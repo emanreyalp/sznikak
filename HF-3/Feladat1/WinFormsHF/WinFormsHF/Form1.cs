@@ -26,5 +26,19 @@ namespace WinFormsHF
         {
             this.Close();
         }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InputDialog dlg = new InputDialog();
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                string result = dlg.InputText;
+
+                MessageBox.Show(result);
+
+
+            }
+
+        }
     }
 }
