@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shape", "Feladat2\Shape.csproj", "{085B543A-BA4D-4BA8-B2F0-D8C4EB105318}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shape.Library", "Alakzatok\Shape.Library.csproj", "{0ECEF11C-0583-4368-8C17-49AFDCD3C32B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shape.Library.Tests", "Alakzatok.Librar.Tests\Shape.Library.Tests.csproj", "{0899F2F6-2457-4278-B613-F9388DDFEFBA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{085B543A-BA4D-4BA8-B2F0-D8C4EB105318}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{085B543A-BA4D-4BA8-B2F0-D8C4EB105318}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{085B543A-BA4D-4BA8-B2F0-D8C4EB105318}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{085B543A-BA4D-4BA8-B2F0-D8C4EB105318}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ECEF11C-0583-4368-8C17-49AFDCD3C32B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ECEF11C-0583-4368-8C17-49AFDCD3C32B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ECEF11C-0583-4368-8C17-49AFDCD3C32B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ECEF11C-0583-4368-8C17-49AFDCD3C32B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0899F2F6-2457-4278-B613-F9388DDFEFBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0899F2F6-2457-4278-B613-F9388DDFEFBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0899F2F6-2457-4278-B613-F9388DDFEFBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0899F2F6-2457-4278-B613-F9388DDFEFBA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
