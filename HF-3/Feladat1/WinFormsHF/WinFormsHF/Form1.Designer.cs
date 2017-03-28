@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fIleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,6 +44,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lName = new System.Windows.Forms.Label();
             this.lCreated = new System.Windows.Forms.Label();
+            this.reloadTimer = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.detailsPanel.SuspendLayout();
             this.SuspendLayout();
@@ -139,6 +141,7 @@
             this.detailsPanel.Name = "detailsPanel";
             this.detailsPanel.Size = new System.Drawing.Size(318, 284);
             this.detailsPanel.TabIndex = 4;
+            this.detailsPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.detailsPanel_Paint);
             // 
             // label1
             // 
@@ -175,6 +178,10 @@
             this.lCreated.Size = new System.Drawing.Size(35, 13);
             this.lCreated.TabIndex = 8;
             this.lCreated.Text = "label4";
+            // 
+            // reloadTimer
+            // 
+            this.reloadTimer.Tick += new System.EventHandler(this.reloadTimer_Tick);
             // 
             // Form1
             // 
@@ -218,6 +225,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lName;
         private System.Windows.Forms.Label lCreated;
+        private System.Windows.Forms.Timer reloadTimer;
     }
 }
 

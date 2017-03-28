@@ -14,6 +14,7 @@ namespace WinFormsHF
     public partial class Form1 : Form
     {
         FileInfo loadedFile = null;
+        int countdown = 100;
         public Form1()
         {
             InitializeComponent();
@@ -63,9 +64,30 @@ namespace WinFormsHF
             if (fullName != null)
             {
                 textBox1.Text = File.ReadAllText(fullName);
+                reloadTimer.Start();
+                countdown = 100;
                 loadedFile = new FileInfo(fullName);
                 lCreated.Text = loadedFile.CreationTime.ToString();
                 lName.Text = loadedFile.Name.ToString();
+            }
+        }
+
+        private void detailsPanel_Paint(object sender, PaintEventArgs e)
+        {
+            if (loadedFile == null)
+                return;
+
+            e.Graphics.FillRectangle(Brushes.Green, 0, 0, countdown, 5);
+        }
+
+        private void reloadTimer_Tick(object sender, EventArgs e)
+        {
+            countdown--;
+            detailsPanel.Invalidate();
+            if (countdown <= 0)
+            {
+                countdown = 100;
+                textBox1.Text = File.ReadAllText(loadedFile.FullName);
             }
         }
     }
