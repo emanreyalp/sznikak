@@ -38,37 +38,86 @@ namespace WinFormsHF
                 string result = dlg.InputText;
 
                 MessageBox.Show(result);
-
-                DirectoryInfo parentDI = new DirectoryInfo(result);
-                listView1.Items.Clear();
-                try
-                {
-                    foreach (FileInfo fi in parentDI.GetFiles())
-                    {
-                        listView1.Items.Add(new ListViewItem(new string[] { fi.Name,
-						fi.Length.ToString(), fi.LastWriteTime.ToString(), fi.FullName }));
-                    }
-
-
-                }
-                catch { }
+                ListDirectoriesAndFiles(result);
 
             }
 
         }
 
+        private void ListDirectoriesAndFiles(string result)
+        {
+            listView1.Items.Clear();
+
+            DirectoryInfo parentDI = new DirectoryInfo(result);
+
+            if (parentDI.Parent != null)
+            {
+                listView1.Items.Add(
+                    new ListViewItem(
+                        new string[] {
+                        "...",
+		                "",
+                        "",
+                        parentDI.Parent.FullName 
+                    }
+                    )
+                );
+            }
+            try
+            {
+                foreach (FileInfo fi in parentDI.GetFiles())
+                {
+                    listView1.Items.Add(
+                        new ListViewItem(
+                            new string[] {
+                                    fi.Name,
+						            fi.Length.ToString(),
+                                    fi.LastWriteTime.ToString(),
+                                    fi.FullName 
+                                }
+                        )
+                    );
+                }
+
+                foreach (DirectoryInfo di in parentDI.GetDirectories())
+                {
+                    listView1.Items.Add(
+                        new ListViewItem(
+                            new string[] {
+                                    di.Name,
+                                    "- folder -",
+                                    di.LastWriteTime.ToString(),
+                                    di.FullName
+                                }
+                        )
+                    );
+                }
+            }
+            catch { }
+        }
+
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count != 1) return;
+            if (listView1.SelectedItems.Count != 1)
+                return;
+
             string fullName = listView1.SelectedItems[0].SubItems[3].Text;
             if (fullName != null)
             {
-                textBox1.Text = File.ReadAllText(fullName);
-                reloadTimer.Start();
-                countdown = 100;
-                loadedFile = new FileInfo(fullName);
-                lCreated.Text = loadedFile.CreationTime.ToString();
-                lName.Text = loadedFile.Name.ToString();
+                if (listView1.SelectedItems[0].SubItems[1].Text == "- folder -" ||
+                    listView1.SelectedItems[0].SubItems[2].Text == "")
+                {
+                    ListDirectoriesAndFiles(fullName);
+                }
+                else
+                {
+                    textBox1.Text = File.ReadAllText(fullName);
+                    reloadTimer.Start();
+                    countdown = 100;
+                    loadedFile = new FileInfo(fullName);
+                    lCreated.Text = loadedFile.CreationTime.ToString();
+                    lName.Text = loadedFile.Name.ToString();
+                }
             }
         }
 
