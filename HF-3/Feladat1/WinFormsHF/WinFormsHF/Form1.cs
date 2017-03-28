@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace WinFormsHF
 {
     public partial class Form1 : Form
     {
+        FileInfo loadedFile = null;
         public Form1()
         {
             InitializeComponent();
@@ -36,9 +38,35 @@ namespace WinFormsHF
 
                 MessageBox.Show(result);
 
+                DirectoryInfo parentDI = new DirectoryInfo(result);
+                listView1.Items.Clear();
+                try
+                {
+                    foreach (FileInfo fi in parentDI.GetFiles())
+                    {
+                        listView1.Items.Add(new ListViewItem(new string[] { fi.Name,
+						fi.Length.ToString(), fi.LastWriteTime.ToString(), fi.FullName }));
+                    }
+
+
+                }
+                catch { }
 
             }
 
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count != 1) return;
+            string fullName = listView1.SelectedItems[0].SubItems[3].Text;
+            if (fullName != null)
+            {
+                textBox1.Text = File.ReadAllText(fullName);
+                loadedFile = new FileInfo(fullName);
+                lCreated.Text = loadedFile.CreationTime.ToString();
+                lName.Text = loadedFile.Name.ToString();
+            }
         }
     }
 }
